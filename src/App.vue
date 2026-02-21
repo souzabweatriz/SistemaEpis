@@ -1,7 +1,7 @@
+<script setup>
+import AppHeader from '/components/Header/AppHeader.vue'
+</script>
+
 <template>
-<div id="app">
-<Header />
-<Home />
-<Footer />
-</div>
+  <AppHeader />
 </template>
