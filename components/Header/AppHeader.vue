@@ -82,7 +82,7 @@ const router = useRouter()
 }
 
 .nav-link:hover {
-    color: #570a72;
+    color: rgb(212, 193, 219);
 }
 
 .login-button{

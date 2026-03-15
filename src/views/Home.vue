@@ -31,6 +31,10 @@
             <img class="img-epi epi-oculos" src="../../public/Image/oculos.png" alt="Imagem de Óculos EPI">
             <img class="img-epi epi-macacao" src="../../public/Image/macacao.png" alt="Imagem Macacão EPI">
         </div>
+        <div class="section-text">
+            <h1 class="home-title">Pronto para transformar sua gestão de EPIs?</h1>
+            <p>Aproveite de todas as funcionalidades que irão facilitar o seu dia</p>
+        </div>
         <div class="section-gerenciamento">
             <h1 class="text-gerenciamento">Gerencie as EPI's do seu ambiente corporativo</h1>
             <aside class="aside-estoque">
@@ -56,8 +60,6 @@
                 </div>
             </aside>
         </div>
-        <div class="home-title">Pronto para transformar</div>
-
     </div>
 </template>
 
@@ -109,7 +111,7 @@ onBeforeUnmount(() => {
     justify-content: center;
     width: 100%;
     height: auto;
-    background-color: #ece4f0;
+    background-color: #ffffff;
 }
 
 .home-nav {
@@ -197,6 +199,17 @@ onBeforeUnmount(() => {
     opacity: 0;
     transform: translateY(12px);
     animation: revealText 0.6s ease forwards;
+}
+
+.section-text{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+
 }
 
 .text-purple:nth-child(1) {
@@ -351,11 +364,13 @@ onBeforeUnmount(() => {
 .section-gerenciamento{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
-    width: 80rem;
-    background-color: #F5F3F6;
+    width: 100%;
     height: 20rem;
+    background-color: #F5F3F6;
+    margin-top: 2rem;
+
 }
 .text-gerenciamento{
     color:#5A286C;
@@ -373,6 +388,7 @@ onBeforeUnmount(() => {
     gap: 1rem;
     width: 27rem;
     height: 3rem;
+    margin-right: 5rem;
     background-color: white;
     border-radius: 2rem;
     box-shadow:
