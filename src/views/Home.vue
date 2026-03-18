@@ -11,8 +11,10 @@
         <div class="colored-text">
             <p class="text-purple">Segurança elevada à nuvem</p>
             <p class="text-purple">Gestão que protege vidas</p>
-            <p class="text-purple">Gestão que protege vidas</p>
-            <p class="text-purple">Gestão que protege vidas</p>
+            <p class="text-purple">Decisões mais inteligentes</p>
+            <p class="text-purple">Controle em tempo real</p>
+            <p class="text-purple">Eficiência que cresce</p>
+            <p class="text-purple">Processos mais ágeis</p>
         </div>
         <div class="section-epis">
             <h1 class="title-epis">Controle total do ciclo de vida dos</h1>
