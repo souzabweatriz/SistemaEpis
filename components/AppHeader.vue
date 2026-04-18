@@ -7,9 +7,8 @@
         </div>
     </div>
     <nav class="nav">
-        <router-link class="nav-link" to="/">Home</router-link>
-        <router-link class="nav-link" to="/setores">Setores</router-link>
-        <router-link class="nav-link" to="/epis">EPIs</router-link>
+        <router-link class="nav-link" to="/">Início</router-link>
+        <router-link class="nav-link" to="/contato">Contato</router-link>
         <router-link class="nav-link" to="/sobre">Sobre</router-link>
     </nav>
     <button class="login-button" @click="router.push('/Login')">Entrar</button>
@@ -96,7 +95,7 @@ const router = useRouter()
 
 .login-button {
     border: none;
-    border-radius: 0.65rem;
+    border-radius: 0.4rem;
     width: 5rem;
     height: 2rem;
     background: var(--azul-profundo-seguranca);
@@ -114,19 +113,20 @@ const router = useRouter()
 
 @media (max-width: 760px) {
     .header {
-        width: calc(100% - 1.2rem);
+        width: 90%;
+        height: 2.5rem;
         top: 0.55rem;
         padding: 0.58rem 0.72rem;
         gap: 0.55rem;
     }
 
     .image-logo {
-        width: 1.65rem;
+        width: 2.5rem;
         height: 1.65rem;
     }
 
     .app-title {
-        font-size: 0.88rem;
+        font-size: 0.8rem;
     }
 
     .nav {
@@ -138,7 +138,7 @@ const router = useRouter()
     }
 
     .login-button {
-        padding: 0.38rem 0.58rem;
+        height: 1.5rem;
         font-size: 0.68rem;
     }
 }

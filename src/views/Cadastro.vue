@@ -34,8 +34,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { supabase } from '../composables/useSupabase.js'
+import { useSupabase } from '../composables/useSupabase.js'
 
+const { supabase } = useSupabase()
 
 const router = useRouter()
 const email = ref('')

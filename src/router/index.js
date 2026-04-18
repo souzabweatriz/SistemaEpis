@@ -1,6 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import { supabase } from '../composables/useSupabase.js'
+import { useSupabase } from '../composables/useSupabase.js'
+import Dashboard from '../views/Dashboard.vue'
+import Cadastro from '../views/Cadastro.vue'
+import EPIs from '../views/EPIs.vue'
+import Setores from '../views/Setores.vue'
+import Sobre from '../views/Sobre.vue'
+
+
+const { supabase } = useSupabase()
 
 const routes = [
     {
@@ -37,22 +45,36 @@ const routes = [
         path: '/sobre',
         name: 'sobre',
         alias: '/Sobre',
-        component: () => import('../views/Sobre.vue')
+        component: Sobre
+    },
+    {
+        path: '/dashboard',
+        name: 'dashboard',
+        alias: '/Dashboard',
+        component: Dashboard,
+        meta: { requiresAuth: true },
+
+        children: [
+            { path: '', redirect: '/dashboard/funcionario' },
+            { path: 'entregas', name: 'entregas', component: EPIs },
+            { path: 'relatorio', name: 'relatorio', component: Setores },
+            { path: 'cadastro', name: 'dashboard-cadastro', component: Cadastro },
+            { path: 'funcionario', name: 'funcionario', component: Cadastro }
+        ]
     }
 ]
 
-const router = createRouter({ history: createWebHistory(), routes });
+const router = createRouter({ history: createWebHistory(), routes })
 
-router.beforeEach(async (to, from, next) => {
-    const requiresAuth = to.matched.some(r => r.meta.requiresAuth);
-
-    const { data: { session } } = await supabase.auth.getSession();
+router.beforeEach(async (to) => {
+    const requiresAuth = to.matched.some(r => r.meta.requiresAuth)
+    const { data: { session } } = await supabase.auth.getSession()
 
     if (requiresAuth && !session) {
-        next('/login');
-    } else {
-        next();
+        return '/login'
     }
-});
+
+    return true
+})
 
 export default router

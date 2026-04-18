@@ -1,5 +1,6 @@
 <template>
-    <footer class="app-footer">
+    <footer v-if="showFooter" class="app-footer">
+        <div class="footer-shell">
             <div class="footer-top">
                 <section class="brand-column">
                     <div class="brand-row">
@@ -31,15 +32,25 @@
                         <a href="mailto:contato@epicloud.com.br" class="footer-link">contato@epicloud.com.br</a>
                     </div>
                 </section>
-                <div class="footer-bottom">
-                    <p>EPICloud © 2026. O futuro e agora.</p>
-                    <p>Construido com precisao. Escalado com proposito.</p>
-                </div>
             </div>
+            <div class="footer-bottom">
+                <p>EPICloud © 2026. O futuro e agora.</p>
+                <p>Construido com precisao. Escalado com proposito.</p>
+            </div>
+        </div>
     </footer>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const showFooter = computed(() => {
+    const currentPath = route.path.toLowerCase()
+    return !currentPath.startsWith('/dashboard') && !currentPath.startsWith('/app')
+})
 </script>
 
 <style scoped>
@@ -56,22 +67,20 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
     min-height: 14rem;
-    height: auto;
-    color: #d6d2e1;
-    background:
-        radial-gradient(circle at 20% -10%, var(--preto-tipografico), transparent 45%),
-        radial-gradient(circle at 85% 15%, var(--preto-tipografico), transparent 45%),
-        linear-gradient(180deg, var(--preto-tipografico) 0%, #05040f 100%);
+    color: #ecf2f6;
+    background: linear-gradient(135deg, #162330 0%, #223443 52%, #2a4850 100%);
 }
 
 .footer-shell {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 88%;
+    width: 90%;
+    height: 100%;
     min-height: 12rem;
-    height: auto;
+    padding: 1.5rem 0;
     gap: 2rem;
 }
 
@@ -80,7 +89,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: auto;
+    min-height: 8rem;
     gap: 3.5rem;
     flex-wrap: wrap;
 }
@@ -110,12 +119,12 @@
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 0.02em;
-    color: #f2f0fb;
+    color: #f7fafc;
 }
 
 .brand-copy {
     margin: 0;
-    color: #8f8ba0;
+    color: #b8c7d1;
     font-size: 0.84rem;
     line-height: 1.45;
     width: 100%;
@@ -128,7 +137,7 @@
 
 
 .email-icon {
-    color: #7a7494;
+    color: #aab8c2;
     font-size: 0.82rem;
     line-height: 1;
 }
@@ -138,12 +147,12 @@
     border: none;
     outline: none;
     background: transparent;
-    color: #ebe7f8;
+    color: #ecf2f6;
     font-size: 0.84rem;
 }
 
 .email-input::placeholder {
-    color: #7a7494;
+    color: #aab8c2;
 }
 
 .links-column {
@@ -163,33 +172,34 @@
 
 .group-title {
     margin: 0;
-    color: #c7c3d7;
+    color: #b4c2cb;
     letter-spacing: 0.06em;
     font-size: 0.86rem;
     font-weight: 700;
 }
 
 .footer-link {
-    color: #838092;
+    color: #d1dbe2;
     text-decoration: none;
     font-size: 0.84rem;
     transition: color 0.25s ease;
 }
 
 .footer-link:hover {
-    color: #e6e3f3;
+    color: #f8fbfd;
 }
 
 .footer-bottom {
-    border-top: 0.0625rem solid rgba(255, 255, 255, 0.08);
+    border-top: 0.0625rem solid rgba(255, 255, 255, 0.14);
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 22%;
     min-height: 2.5rem;
     gap: 1rem;
     flex-wrap: wrap;
-    color: #5f5b73;
+    color: #aebcc5;
     font-size: 0.72rem;
 }
 
@@ -212,13 +222,15 @@
     .footer-top {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         gap: 1.5rem;
+        text-align: center;
     }
 
     .brand-column {
         width: 100%;
+        align-items: center;
     }
 
     .brand-copy {
@@ -227,20 +239,22 @@
 
     .links-column {
         width: 100%;
-        justify-content: space-between;
+        justify-content: center;
         gap: 1.2rem;
     }
 
     .links-group {
-        width: 46%;
+        width: 100%;
+        align-items: center;
     }
 
     .footer-bottom {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         min-height: 3.2rem;
         gap: 0.6rem;
+        text-align: center;
     }
 }
 
@@ -250,13 +264,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
 
     .footer-shell {
-        width: 100%;
-        min-height: 15rem;
-        gap: 1.7rem;
+        width: 92%;
+        min-height: 13.5rem;
+        padding: 1.7rem 0.4rem;
+        gap: 1.2rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -264,22 +278,49 @@
 
     .footer-top {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        gap: 1.15rem;
+        text-align: center;
     }
 
     .brand-column {
-        width: 42%;
+        width: min(100%, 30rem);
+        align-items: center;
+        text-align: center;
+    }
+
+    .brand-copy {
+        max-width: 28rem;
     }
 
     .links-column {
-        width: 54%;
-        gap: 1.8rem;
+        width: min(100%, 42rem);
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem 1.25rem;
+        justify-content: center;
+        align-items: start;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .links-group {
+        width: 100%;
+        align-items: center;
+        gap: 0.55rem;
     }
 
     .footer-bottom {
-        min-height: 2.8rem;
+        min-height: 2.5rem;
+        width: min(100%, 38rem);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.45rem;
+        text-align: center;
     }
 }
 

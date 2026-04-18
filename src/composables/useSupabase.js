@@ -1,10 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import { ref } from 'vue'
-
-
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+const supabase = createClient(supabaseUrl, supabaseAnonKey)
 const session = ref(null)
 const loadingSession = ref(true)
 
@@ -16,27 +14,14 @@ supabase.auth.getSession().then(({ data }) => {
 
 })
 
-
-
 supabase.auth.onAuthStateChange((_event, newSession) => {
 
     session.value = newSession
 
 })
 
-
-
 export function useSupabase() {
-
     return {
-
-        supabase,
-
-        session,
-
-        loadingSession
-
+        supabase
     }
-
-}
-
+} 

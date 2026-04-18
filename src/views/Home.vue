@@ -6,7 +6,6 @@
         <div class="banner-wrap">
             <img class="banner" src="../../public/Image/bannerWebsite.png" alt="Banner do Website">
             <div class="banner-text">
-                <p class="banner-eyebrow">A inteligência que o seu estoque de EPIs precisava.</p>
                 <h2>Gestão em nuvem, segurança em tempo real</h2>
             </div>
         </div>
@@ -29,84 +28,77 @@
             </div>
         </div>
         <div class="section-epis">
-            <h1 class="title-epis">Controle total do ciclo de vida dos</h1>
-            <h1 class="title-epis">equipamentos de proteção</h1>
+            <img class="section-image" src="../../public/Image/oculos.png" alt="Logo da Empresa">
+            <div class="texts">
+                <h1 class="title-epis">Controle total do ciclo de vida dos equipamentos de proteção</h1>
+                <p class="section-text">Garanta mais segurança, organização e eficiência na gestão de Equipamentos de
+                    Proteção Individual da sua empresa. Nosso Sistema de Controle de EPIs foi desenvolvido para
+                    facilitar o registro, acompanhamento e gerenciamento de todos os equipamentos fornecidos aos
+                    colaboradores.</p>
+                <div class="buttons">
+                    <button class="sobre-button">Saber mais</button>
+                    <button class="sobre-button">Entre em contato</button>
+                </div>
+            </div>
         </div>
-            <h1 class="section-title">Pronto para transformar sua gestão de EPIs?</h1>
-            <p class="section-subtitle">Aproveite de todas as funcionalidades que irão facilitar o seu dia</p>
+        <div class="section-epis">
+            <div class="texts">
+                <h2 class="title-epis">Rastreabilidade completa, segurança garantida</h2>
+                <p class="section-text">Acompanhe cada etapa do ciclo de vida dos EPIs, desde a aquisição até a entrega
+                    e descarte. Nosso sistema oferece rastreabilidade total, garantindo que cada equipamento seja
+                    monitorado
+                    e gerenciado com precisão, proporcionando mais segurança para seus colaboradores e tranquilidade
+                    para
+                    sua empresa.</p>
+            </div>
+            <img class="section-image" src="../../public/Image/capacete.png" alt="Capacete de segurança">
         </div>
-    <AppFooter/>
+
+        <section class="benefits-section">
+            <div class="benefits-header">
+                <h2 class="benefits-title">Por que escolher a EPICloud</h2>
+                <p class="benefits-subtitle">Beneficios exclusivos para empresas que querem evoluir a gestao de EPIs.
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <article class="benefit-card">
+                    <div class="benefit-icon"><i class="pi pi-box"></i></div>
+                    <h3>Agregacao de Valor</h3>
+                    <p>Destaque sua operacao com rastreabilidade inteligente e dados acionaveis.</p>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-icon"><i class="pi pi-bolt"></i></div>
+                    <h3>Implementacao Rapida</h3>
+                    <p>Fluxo de implantacao simples, sem travar a rotina da sua equipe.</p>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-icon"><i class="pi pi-chart-line"></i></div>
+                    <h3>Escala com Controle</h3>
+                    <p>Ganhe visibilidade para crescer sem perder padrao operacional.</p>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-icon"><i class="pi pi-users"></i></div>
+                    <h3>Suporte Dedicado</h3>
+                    <p>Conte com acompanhamento proximo para cada etapa da sua jornada.</p>
+                </article>
+            </div>
+        </section>
+    </div>
+    <AppFooter />
 </template>
 
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import AppHeader from '/components/AppHeader.vue'
-import AppFooter from '../../components/AppFooter.vue'
-
-const router = useRouter()
-const showcaseRef = ref(null)
-const showcaseProgress = ref(0)
-const sectionTextRef = ref(null)
-const isSectionTextVisible = ref(false)
-let sectionTextObserver = null
-
-const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
-
-const updateShowcaseProgress = () => {
-    if (!showcaseRef.value) {
-        return
-    }
-
-    const rect = showcaseRef.value.getBoundingClientRect()
-    const sectionCenter = rect.top + rect.height / 2
-    const viewportCenter = window.innerHeight / 2
-    const startDistance = window.innerHeight * 0.55
-    const distanceToCenter = sectionCenter - viewportCenter
-    const progress = 1 - distanceToCenter / startDistance
-
-    showcaseProgress.value = clamp(progress, 0, 1)
-}
-
-onMounted(() => {
-    updateShowcaseProgress()
-    window.addEventListener('scroll', updateShowcaseProgress, { passive: true })
-    window.addEventListener('resize', updateShowcaseProgress)
-
-    sectionTextObserver = new IntersectionObserver(
-        (entries) => {
-            const [entry] = entries
-
-            if (!entry.isIntersecting) {
-                return
-            }
-
-            isSectionTextVisible.value = true
-            sectionTextObserver.disconnect()
-        },
-        {
-            threshold: 0.35,
-        }
-    )
-
-    if (sectionTextRef.value) {
-        sectionTextObserver.observe(sectionTextRef.value)
-    }
-})
-
-onBeforeUnmount(() => {
-    window.removeEventListener('scroll', updateShowcaseProgress)
-    window.removeEventListener('resize', updateShowcaseProgress)
-
-    if (sectionTextObserver) {
-        sectionTextObserver.disconnect()
-    }
-})
+import AppFooter from '/components/AppFooter.vue'
 </script>
 
 <style scoped>
-.home-container{
+.home-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,7 +127,7 @@ onBeforeUnmount(() => {
     z-index: 1;
 }
 
-.banner{
+.banner {
     width: 100%;
     min-height: 19rem;
     max-height: 35rem;
@@ -158,22 +150,13 @@ onBeforeUnmount(() => {
     text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
-.banner-eyebrow {
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-    color: #9dd7d3;
-}
-
 .banner-text h2 {
     font-size: clamp(1.35rem, 2.6vw, 2.4rem);
     line-height: 1.1;
     max-width: 22ch;
 }
 
-.sobre-button{
+.sobre-button {
     margin-top: 1.4rem;
     width: 10rem;
     height: 3rem;
@@ -187,11 +170,13 @@ onBeforeUnmount(() => {
     font-weight: 700;
     font-size: 0.92rem;
 }
+
 .sobre-button:hover {
     background: linear-gradient(135deg, #084f4a 0%, #3db5ac 100%);
     box-shadow: 0px 6px 16px rgba(78, 205, 196, 0.28);
 }
-.epis-showcase{
+
+.epis-showcase {
     position: relative;
     width: min(100%, 62rem);
     height: 40rem;
@@ -200,7 +185,8 @@ onBeforeUnmount(() => {
     justify-content: center;
     align-items: center;
 }
-.colored-text{
+
+.colored-text {
     display: flex;
     margin-top: 1.4rem;
     align-items: center;
@@ -223,7 +209,7 @@ onBeforeUnmount(() => {
     background-color: #ffffffb0;
     border-radius: 1.2rem;
     padding: 0.7rem 0.9rem;
-    border:  1px solid #062a38;
+    border: 1px solid #062a38;
     color: #00454f;
     display: flex;
     justify-content: center;
@@ -233,8 +219,7 @@ onBeforeUnmount(() => {
     flex-shrink: 0;
 }
 
-.section-text{
-    position: relative;
+.section-text {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -242,178 +227,97 @@ onBeforeUnmount(() => {
     align-items: center;
     gap: 0.7rem;
     margin-top: 1.5rem;
-    padding: 0.8rem 1.2rem;
-    isolation: isolate;
+    width: 90%;
+    max-width: 42rem;
+    line-height: 1.65;
+    color: var(--text-soft);
 }
 
-.section-text::before {
-    content: "";
-    position: absolute;
-    inset: -10% 12%;
-    border-radius: 2rem;
-    background: radial-gradient(circle at 50% 50%, rgba(133, 51, 195, 0.14) 0%, rgba(133, 51, 195, 0) 70%);
-    filter: blur(10px);
-    opacity: 0;
-    z-index: -1;
-}
 
-.section-text.is-visible::before {
-    animation: sectionGlow 1.2s ease-out forwards;
-}
-
-@keyframes marquee {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(calc(-100% - 1rem));
-    }
-}
-.section-epis{
-    margin-top: 2.4rem;
+.section-epis {
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    max-width: 72rem;
+    min-height: 26rem;
     align-items: center;
+    gap: 2rem;
+    margin: 3rem 0 1.5rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    border: none;
+    background: linear-gradient(135deg, rgba(243, 248, 252, 0.96) 0%, rgba(255, 255, 255, 0.98) 55%, rgba(234, 242, 248, 0.95) 100%);
+    box-shadow: 0 18px 42px rgba(18, 55, 82, 0.08);
+}
+
+.texts {
+    display: flex;
     flex-direction: column;
-}
-.img-armario{
-    height: 36rem;
-    z-index: 2;
-}
-
-.img-epi {
-    position: absolute;
-    width: 6.7rem;
-    z-index: 3;
-    filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.18));
-    --item-delay: 0;
-    --item-duration: 0.18;
-    --item-progress: clamp(0, calc((var(--scroll-progress) - var(--item-delay)) / var(--item-duration)), 1);
-    opacity: var(--item-progress);
-    transform: translate(
-        calc((1 - var(--item-progress)) * var(--from-x, 0rem)),
-        calc((1 - var(--item-progress)) * var(--from-y, 0rem))
-    ) scale(calc(0.45 + var(--item-progress) * 0.55));
-    will-change: transform, opacity;
+    justify-content: center;
+    align-items: center;
+    width: 58%;
+    height: auto;
+    gap: 0.5rem;
 }
 
-.epi-botas {
-    top: 2.6rem;
-    left: 2.2rem;
-    --from-x: 13rem;
-    --from-y: 8rem;
-    --item-delay: 0.02;
-}
 
-.epi-capacete {
-    top: 15rem;
-    left: 8.6rem;
-    --from-x: 17rem;
-    --from-y: -1rem;
-    --item-delay: 0.16;
-}
-
-.epi-fone {
-    bottom: 6rem;
-    left: 2.2rem;
-    --from-x: 15rem;
-    --from-y: -7rem;
-    --item-delay: 0.3;
-}
-
-.epi-luvas {
-    top: 2.6rem;
-    right: 2.2rem;
-    --from-x: -13rem;
-    --from-y: 8rem;
-    --item-delay: 0.44;
-}
-
-.epi-oculos {
-    top: 15rem;
-    right: 8.7rem;
-    --from-x: -15rem;
-    --from-y: -1rem;
-    --item-delay: 0.58;
-}
-
-.epi-macacao {
-    bottom: 1.2rem;
-    right: 2.2rem;
-    width: 7.4rem;
-    --from-x: -14rem;
-    --from-y: -8rem;
-    --item-delay: 0.72;
-}
-
-.section-title{
-    max-width: 42rem;
-    font-size: 2.25rem;
-    color: #3A004F;
-    background: linear-gradient(135deg, #2f003f 0%, #5a1b73 55%, #8533c3 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: bolder;
-    opacity: 0;
-    transform: translateY(16px) scale(0.98);
-}
-.title-epis{
+.title-epis {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #3A004F;
-    font-size: 1.95rem;
+    color: var(--text-main);
+    font-size: clamp(1.55rem, 2vw, 2.2rem);
+    line-height: 1.15;
+    margin: 0;
+    width: 100%;
 }
 
-.section-text.is-visible .section-title {
-    animation: titleReveal 0.7s ease-out forwards, gradientFlow 6s ease-in-out infinite;
+.section-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38%;
+    max-width: 24rem;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 18px rgba(18, 55, 82, 0.12));
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 @media (max-width: 900px) {
-    .epis-showcase {
-        height: 31rem;
+    .section-epis {
+        flex-direction: column;
+        width: 92%;
+        min-height: auto;
+        padding: 1.5rem;
+        gap: 1.25rem;
     }
 
-    .img-armario {
-        height: 28rem;
+    .title-epis {
+        font-size: 1.75rem;
     }
 
-    .img-epi {
-        width: 4.8rem;
+    .texts,
+    .section-image {
+        width: 100%;
     }
 
-    .epi-botas {
-        left: 1.2rem;
-    }
-
-    .epi-capacete {
-        left: 1.6rem;
-        top: 11rem;
-    }
-
-    .epi-fone {
-        left: 0.7rem;
-        bottom: 4rem;
-    }
-
-    .epi-luvas {
-        right: 1.2rem;
-    }
-
-    .epi-oculos {
-        right: 1.8rem;
-        top: 11rem;
-    }
-
-    .epi-macacao {
-        right: 0.8rem;
-        bottom: 4rem;
-        width: 5.6rem;
+    .section-image {
+        max-width: 20rem;
+        height: 18rem;
     }
 }
+
 .section-tracking {
     margin-top: 1.4rem;
     margin-bottom: 2.2rem;
@@ -421,17 +325,81 @@ onBeforeUnmount(() => {
     text-align: center;
 }
 
-.section-subtitle{
-    font-size: 1.02rem;
-    color: #210533;
-    margin: 0;
-    opacity: 0;
-    transform: translateY(10px);
+.benefits-section {
+    width: min(100%, 84rem);
+    padding: 2.8rem 0.7rem 3.5rem;
 }
 
-.section-text.is-visible .section-subtitle {
-    animation: subtitleReveal 0.7s ease-out forwards;
-    animation-delay: 0.2s;
+.benefits-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.9rem;
+    margin-bottom: 1.8rem;
+}
+
+.benefits-title {
+    font-size: 2rem;
+    color: #123752;
+    line-height: 1.08;
+}
+
+.benefits-subtitle {
+    font-size: 1.15rem;
+    color: #5f6775;
+    width: min(100%, 46rem);
+    line-height: 1.45;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.2rem;
+}
+
+.benefit-card {
+    background: #ffffff;
+    border: 1px solid #cfdbe5;
+    border-radius: 1rem;
+    min-height: 16rem;
+    padding: 1.3rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.85rem;
+}
+
+.benefit-icon {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 0.95rem;
+    background: #e3f2f4;
+    color: #1A535C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.benefit-icon i {
+    font-size: 1.2rem;
+}
+
+.benefit-card h3 {
+    color: #123752;
+    font-size: 1.35rem;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.benefit-card p {
+    color: #5f6775;
+    font-size: 0.98rem;
+    line-height: 1.45;
+    margin: 0;
 }
 
 @keyframes sectionGlow {
@@ -458,11 +426,23 @@ onBeforeUnmount(() => {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
+    }
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
     }
 }
 
@@ -493,9 +473,14 @@ onBeforeUnmount(() => {
     .carousel-track {
         animation-duration: 30s;
     }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
+
     .banner-wrap,
     .banner {
         min-height: 16.5rem;
@@ -538,54 +523,20 @@ onBeforeUnmount(() => {
         animation-duration: 26s;
     }
 
-    .epis-showcase {
-        height: 24rem;
-        margin-top: 0;
+    .benefits-section {
+        padding: 2.2rem 0.7rem 2.6rem;
     }
 
-    .img-armario {
-        height: 18.5rem;
+    .benefits-subtitle {
+        font-size: 1rem;
     }
 
-    .img-epi {
-        width: 3.5rem;
+    .benefit-card h3 {
+        font-size: 1.8rem;
     }
 
-    .epi-botas {
-        left: 0.4rem;
-        top: 2.8rem;
-    }
-
-    .epi-capacete {
-        left: 0.6rem;
-        top: 8.9rem;
-    }
-
-    .epi-fone {
-        left: 0.2rem;
-        bottom: 4.1rem;
-    }
-
-    .epi-luvas {
-        right: 0.5rem;
-        top: 2.8rem;
-    }
-
-    .epi-oculos {
-        right: 0.8rem;
-        top: 8.8rem;
-    }
-
-    .epi-macacao {
-        right: 0.3rem;
-        bottom: 3.8rem;
-        width: 3.9rem;
-    }
-
-    .title-epis {
-        font-size: 1.3rem;
-        line-height: 1.2;
-        padding: 0 0.9rem;
+    .benefit-card p {
+        font-size: 1.2rem;
     }
 }
 
@@ -609,6 +560,11 @@ onBeforeUnmount(() => {
         text-align: center;
     }
 
+    .section-epis {
+        padding: 1.25rem;
+        border-radius: 1.5rem;
+    }
+
     .section-title {
         font-size: 1.6rem;
         text-align: center;
@@ -623,6 +579,14 @@ onBeforeUnmount(() => {
         animation-duration: 24s;
     }
 
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefit-card {
+        min-height: 14rem;
+    }
+
     .section-tracking {
         margin-top: 1rem;
         margin-bottom: 1.8rem;
@@ -630,6 +594,7 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 480px) {
+
     .banner-wrap,
     .banner {
         min-height: 14rem;
@@ -666,6 +631,11 @@ onBeforeUnmount(() => {
 
     .section-title {
         font-size: 1.35rem;
+    }
+
+    .section-image {
+        max-width: 16rem;
+        height: 14rem;
     }
 
     .section-subtitle {
