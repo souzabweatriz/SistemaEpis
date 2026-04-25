@@ -3,7 +3,7 @@
         <aside class="sidebar">
             <h1 class="logo">
                 <i class="fas fa-shield-alt"></i>
-                Sistema EPI
+                EPICloud
             </h1>
             <nav class="menu">
                 <RouterLink to="/dashboard/funcionario" class="menu-item" active-class="active">
@@ -170,32 +170,70 @@ async function sair() {
 @media (max-width: 900px) {
     .sidebar>.sidebar {
         width: 100%;
-        min-height: auto;
-        padding: 1.25rem;
+        min-height: calc(100vh - 1.6rem);
+        padding: 1rem 0.8rem;
     }
 }
 
 @media (max-width: 640px) {
     .sidebar>.sidebar {
-        border-radius: 1.15rem;
-        padding: 1rem;
-        gap: 1.15rem;
+        border-radius: 1rem;
+        padding: 0.8rem 0.45rem;
+        gap: 0.8rem;
+        align-items: center;
     }
 
     .logo {
-        font-size: 0.98rem;
+        justify-content: center;
+        font-size: 0;
+        margin-bottom: 0;
     }
 
     .logo i {
-        width: 2.3rem;
-        height: 2.3rem;
-        border-radius: 0.8rem;
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: 0.7rem;
+        margin: 0;
     }
 
-    .menu-item,
+    .menu {
+        width: 100%;
+        align-items: center;
+    }
+
+    .menu-item {
+        width: 2.8rem;
+        height: 2.8rem;
+        justify-content: center;
+        padding: 0;
+        border-radius: 0.75rem;
+        gap: 0;
+    }
+
+    .menu-item span {
+        display: none;
+    }
+
+    .menu-item i {
+        width: auto;
+        font-size: 1.05rem;
+    }
+
     .botao-sair {
-        padding: 0.85rem 0.9rem;
-        font-size: 0.9rem;
+        width: 2.8rem;
+        height: 2.8rem;
+        padding: 0;
+        border-radius: 0.75rem;
+        font-size: 0;
+        justify-content: center;
+    }
+
+    .botao-sair span {
+        display: none;
+    }
+
+    .botao-sair i {
+        font-size: 1rem;
     }
 }
 </style>

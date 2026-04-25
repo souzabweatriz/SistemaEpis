@@ -24,13 +24,26 @@ import SideBar from '../../components/SideBar.vue'
 }
 
 .dashboard-content {
-    min-width: 0;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
 @media (max-width: 1024px) {
     .dashboard-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: 14rem 1fr;
+        gap: 0.9rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .dashboard-layout {
+        grid-template-columns: 5.2rem 1fr;
+        gap: 0.6rem;
+        padding: 0.5rem;
     }
 }
 </style>

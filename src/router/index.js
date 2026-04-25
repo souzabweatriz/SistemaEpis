@@ -2,10 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import { useSupabase } from '../composables/useSupabase.js'
 import Dashboard from '../views/Dashboard.vue'
-import Cadastro from '../views/Cadastro.vue'
+import CadastroFunc from '../views/CadastroFunc.vue'
 import EPIs from '../views/EPIs.vue'
 import Setores from '../views/Setores.vue'
 import Sobre from '../views/Sobre.vue'
+import CadastroEpi from '../views/CadastroEpi.vue'
 
 
 const { supabase } = useSupabase()
@@ -26,7 +27,7 @@ const routes = [
         path: '/cadastro',
         name: 'cadastro',
         alias: '/Cadastro',
-        component: () => import('../views/Cadastro.vue')
+        component: () => import('../views/CadastroFunc.vue')
     },
     {
         path: '/epis',
@@ -58,8 +59,8 @@ const routes = [
             { path: '', redirect: '/dashboard/funcionario' },
             { path: 'entregas', name: 'entregas', component: EPIs },
             { path: 'relatorio', name: 'relatorio', component: Setores },
-            { path: 'cadastro', name: 'dashboard-cadastro', component: Cadastro },
-            { path: 'funcionario', name: 'funcionario', component: Cadastro }
+            { path: 'cadastro', name: 'cadastroEpi', component: CadastroEpi },
+            { path: 'funcionario', name: 'funcionario', component: CadastroFunc }
         ]
     }
 ]

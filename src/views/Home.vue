@@ -188,6 +188,7 @@ import AppFooter from '/components/AppFooter.vue'
 
 .colored-text {
     display: flex;
+    justify-content: center;
     margin-top: 1.4rem;
     align-items: center;
     gap: 1rem;
@@ -208,7 +209,6 @@ import AppFooter from '/components/AppFooter.vue'
 .carousel-text {
     background-color: #ffffffb0;
     border-radius: 1.2rem;
-    padding: 0.7rem 0.9rem;
     border: 1px solid #062a38;
     color: #00454f;
     display: flex;
@@ -328,6 +328,10 @@ import AppFooter from '/components/AppFooter.vue'
 .benefits-section {
     width: min(100%, 84rem);
     padding: 2.8rem 0.7rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .benefits-header {
@@ -354,12 +358,17 @@ import AppFooter from '/components/AppFooter.vue'
 }
 
 .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
     gap: 1.2rem;
+    width: 100%;
 }
 
 .benefit-card {
+    flex: 1 1 16rem;
+    max-width: 18rem;
     background: #ffffff;
     border: 1px solid #cfdbe5;
     border-radius: 1rem;
@@ -367,9 +376,10 @@ import AppFooter from '/components/AppFooter.vue'
     padding: 1.3rem 1.15rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 0.85rem;
+    text-align: center;
 }
 
 .benefit-icon {
@@ -473,10 +483,6 @@ import AppFooter from '/components/AppFooter.vue'
     .carousel-track {
         animation-duration: 30s;
     }
-
-    .benefits-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
 
 @media (max-width: 768px) {
@@ -577,10 +583,6 @@ import AppFooter from '/components/AppFooter.vue'
 
     .carousel-track {
         animation-duration: 24s;
-    }
-
-    .benefits-grid {
-        grid-template-columns: 1fr;
     }
 
     .benefit-card {
