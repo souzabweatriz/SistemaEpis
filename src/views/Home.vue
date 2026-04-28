@@ -203,6 +203,7 @@ import AppFooter from '/components/AppFooter.vue'
     align-items: center;
     gap: 1rem;
     min-width: max-content;
+    height: auto;
     animation: marquee 26s linear infinite;
 }
 

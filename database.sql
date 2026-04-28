@@ -5,7 +5,8 @@ CREATE TABLE epi (
     numero_ca VARCHAR(20) NOT NULL,
     fabricante VARCHAR(80),
     dt_validade DATE NOT NULL,
-    periodicidade_meses INTEGER DEFAULT 12
+    periodicidade_meses INTEGER DEFAULT 12,
+    estoque INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE alunos (
@@ -41,12 +42,25 @@ CREATE TABLE funcionarios (
         REFERENCES departamento(id_departamento)
 );
 
-INSERT INTO epi (nome, tipo, numero_ca, fabricante, dt_validade, periodicidade_meses) VALUES
-('Capacete de Segurança', 'Proteção da cabeça', 'CA12345', '3M', '2027-12-31', 24),
-('Luva de Proteção', 'Proteção das mãos', 'CA67890', 'Volk', '2026-06-15', 12),
-('Óculos de Segurança', 'Proteção dos olhos', 'CA54321', 'Danny', '2028-03-10', 18),
-('Protetor Auricular', 'Proteção auditiva', 'CA98765', '3M', '2027-08-20', 12),
-('Botina de Segurança', 'Proteção dos pés', 'CA45678', 'Bracol', '2029-01-15', 24);
+CREATE TABLE entregas (
+    id_entrega SERIAL PRIMARY KEY,
+    id_funcionario INTEGER NOT NULL,
+    id_epi INTEGER NOT NULL,
+    quantidade INTEGER NOT NULL DEFAULT 1,
+    data_entrega DATE NOT NULL,
+    observacoes TEXT,
+    FOREIGN KEY (id_funcionario)
+        REFERENCES funcionarios(id_funcionario),
+    FOREIGN KEY (id_epi)
+        REFERENCES epi(id_epi)
+);
+
+INSERT INTO epi (nome, tipo, numero_ca, fabricante, dt_validade, periodicidade_meses, estoque) VALUES
+('Capacete de Segurança', 'Proteção da cabeça', 'CA12345', '3M', '2027-12-31', 24, 40),
+('Luva de Proteção', 'Proteção das mãos', 'CA67890', 'Volk', '2026-06-15', 12, 120),
+('Óculos de Segurança', 'Proteção dos olhos', 'CA54321', 'Danny', '2028-03-10', 18, 58),
+('Protetor Auricular', 'Proteção auditiva', 'CA98765', '3M', '2027-08-20', 12, 80),
+('Botina de Segurança', 'Proteção dos pés', 'CA45678', 'Bracol', '2029-01-15', 24, 33);
 
 INSERT INTO alunos (nome, curso, sala, data_nascimento, endereco, foto, email, senha) VALUES
 ('Ana Beatriz de Souza', 'Desenvolvimento de Sistemas', 'A1', '2008-05-12', 'Rua das Flores, 123', NULL, 'ana@aluno.com', '123456'),
@@ -67,3 +81,10 @@ INSERT INTO departamento (nome_departamento, email, telefone, senha) VALUES
 ('Segurança do Trabalho', 'seguranca@epicloud.com', 118888888, '123456'),
 ('TI', 'ti@epicloud.com', 117777777, '123456'),
 ('Administração', 'adm@epicloud.com', 116666666, '123456');
+
+INSERT INTO entregas (id_funcionario, id_epi, quantidade, data_entrega, observacoes) VALUES
+(1, 1, 2, '2026-04-20', 'Entrega no turno matinal'),
+(2, 2, 1, '2026-04-18', NULL),
+(3, 3, 3, '2026-04-19', 'Kit para equipe de suporte'),
+(4, 1, 1, '2026-04-21', 'Substituição de equipamento danificado'),
+(5, 4, 2, '2026-04-17', 'Estoque para manutenção');

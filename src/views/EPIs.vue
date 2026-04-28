@@ -25,19 +25,25 @@
                         <td>Capacete Classe B</td>
                         <td>146</td>
                         <td>8 meses</td>
-                        <td><span class="status ok">Normal</span></td>
+                        <td><span class="status ok">OK</span></td>
                     </tr>
                     <tr>
                         <td>Luva Nitrilica</td>
                         <td>42</td>
                         <td>2 meses</td>
-                        <td><span class="status warn">Repor em breve</span></td>
+                        <td><span class="status warn">Médio</span></td>
                     </tr>
                     <tr>
                         <td>Oculos de Protecao</td>
                         <td>19</td>
                         <td>1 mes</td>
-                        <td><span class="status danger">Critico</span></td>
+                        <td><span class="status warn">Médio</span></td>
+                    </tr>
+                    <tr>
+                        <td>Protetor Auricular</td>
+                        <td>7</td>
+                        <td>4 meses</td>
+                        <td><span class="status danger">Baixo</span></td>
                     </tr>
                 </tbody>
             </table>

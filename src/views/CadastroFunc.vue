@@ -100,10 +100,18 @@
                         </thead>
                         <tbody>
                             <tr v-if="!funcionarios.length">
-                                <td colspan="5" class="empty-row">Nenhum funcionario cadastrado ainda.</td>
+                                <td colspan="6" class="empty-row">Nenhum funcionario cadastrado ainda.</td>
                             </tr>
                             <tr v-for="f in funcionarios" :key="getRowId(f)">
-                                <td><span class="text-bold">{{ f.nome }}</span></td>
+                                <td>
+                                    <div class="colaborador-cell">
+                                        <img v-if="f.foto" :src="f.foto" :alt="f.nome" class="avatar">
+                                        <div v-else class="avatar placeholder">
+                                            <i class="pi pi-user"></i>
+                                        </div>
+                                        <span class="text-bold">{{ f.nome }}</span>
+                                    </div>
+                                </td>
                                 <td>{{ f.email }}</td>
                                 <td>
                                     <span class="badge">{{ getDepartamentoNome(f.id_departamento) }}</span>
@@ -627,6 +635,31 @@ select.input-field {
 .empty-row {
     text-align: center;
     color: #5b758c;
+}
+
+.colaborador-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatar {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid #d7e4ee;
+    flex-shrink: 0;
+}
+
+.avatar.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e8f3fb, #d7e9f5);
+    color: #4a7fa8;
+    font-size: 1rem;
 }
 
 @media (max-width: 67.5rem) {

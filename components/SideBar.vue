@@ -18,6 +18,10 @@
                     <i class="fas fa-chart-bar"></i>
                     <span>Relatório</span>
                 </RouterLink>
+                <RouterLink to="/dashboard/cadastro" class="menu-item" active-class="active">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Cadastro de EPI</span>
+                </RouterLink>
             </nav>
             <button @click="sair" class="botao-sair">
                 <i class="fas fa-sign-out-alt"></i>

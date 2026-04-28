@@ -59,7 +59,7 @@ const routes = [
             { path: '', redirect: '/dashboard/funcionario' },
             { path: 'entregas', name: 'entregas', component: EPIs },
             { path: 'relatorio', name: 'relatorio', component: Setores },
-            { path: 'cadastro', name: 'cadastroEpi', component: CadastroEpi },
+            { path: 'cadastro', name: 'cadastroEpi', alias: '/dashboard/CadastroEpi', component: CadastroEpi },
             { path: 'funcionario', name: 'funcionario', component: CadastroFunc }
         ]
     }
